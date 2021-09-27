@@ -1,0 +1,129 @@
+alter procedure horserace  @max int ,  @i int
+as
+
+begin
+DECLARE @STARTA VARCHAR(50) = '1',@STARTb VARCHAR(50) = '2',@STARTc VARCHAR(50) = '3' ,@STARTd VARCHAR(50) = '4',@STARTe VARCHAR(50) = '5'
+,@a varchar(50) ,@b varchar(50)  ,@c varchar(50) ,@d varchar(50), @e varchar (50), @position1a INT,@position1b INT,@position1c INT,@position1d INT,@position1e INT,@position2a INT,@position2b INT,@position2c INT,@position2d INT,@position2e INT
+SET @position2a = @MAX-1
+SET @position2b = @MAX-1
+SET @position2c = @MAX-1
+SET @position2d = @MAX-1
+SET @position2e = @MAX-1
+SET @position1a = 0
+SET @position1b = 0
+SET @position1c = 0
+SET @position1d = 0
+SET @position1e = 0
+print @STARTa +  REPLICATE ('*', @max)
+print  @STARTb +  REPLICATE ('*', @max)
+print  @STARTc +  REPLICATE ('*', @max)
+print @STARTd +  REPLICATE ('*', @max)
+print @STARTe +  REPLICATE ('*', @max)
+print ''
+
+
+WHILE (@POSITION1A != @MAX and
+@POSITION1B !=@MAX
+and @POSITION1C !=@MAX and
+@POSITION1d !=@MAX and @POSITION1e !=@MAX)
+
+
+begin
+
+
+begin 
+
+
+
+
+
+SET  @position1a= CAST(RAND()*@i AS INT) +@position1a
+IF  @position1a >@MAX
+set @position1a =@MAX
+
+else SET @position1a= @position1a
+
+SET @position2a=@MAX-@position1a
+ 
+SET @position1b = CAST(RAND()*@i AS INT) +@position1b
+IF @position1b > @MAX
+SET @position1b=@MAX
+else  SET @position1b=@position1b
+
+
+SET @position2b=@MAX-@position1b
+
+
+
+SET @position1C = CAST(RAND()*@i AS INT) +@position1C
+IF @position1C >@MAX
+SET @position1c=@MAX
+else SET @position1c=@position1c
+
+SET @position2c=@MAX-@position1c
+
+SET  @position1d= CAST(RAND()*@i AS INT) +@position1d
+
+IF  @position1d >@MAX
+set @position1d =@MAX
+
+else SET @position1d= @position1d
+
+
+SET @position2d=@MAX-@position1d
+
+SET  @position1e= CAST(RAND()*@i AS INT) +@position1e
+
+IF  @position1e >@MAX
+set @position1e =@MAX
+
+else SET @position1e= @position1e
+
+
+SET @position2e=@MAX-@position1e
+
+
+SET @a =REPLICATE ('*', @position1a)+ @STARTa +  REPLICATE ('*', @position2a)
+SET @b =REPLICATE ('*', @position1b)+ @STARTb +  REPLICATE ('*', @position2b)
+SET @c =REPLICATE ('*', @position1c)+ @STARTc +  REPLICATE ('*', @position2c)
+SET @d =REPLICATE ('*', @position1d)+ @STARTd +  REPLICATE ('*', @position2d)
+SET @e =REPLICATE ('*', @position1e)+ @STARTe +  REPLICATE ('*', @position2e)
+
+PRINT @a
+print @b
+print @c
+print @d
+print @e
+Print '         '
+
+END
+
+
+
+IF @position2a = 0
+PRINT 'THE WINNER IS ' +@starta
+else
+IF @position2b = 0
+PRINT 'THE WINNER IS ' +@startb
+else
+IF @position2c = 0
+PRINT 'THE WINNER IS ' + +@startc
+else IF @position2d = 0
+PRINT 'THE WINNER IS ' + +@startd 
+else 
+IF @position2d = 0
+PRINT 'THE WINNER IS ' + +@starte
+
+
+end
+
+
+
+
+end
+
+exec horserace  @max = 20 ,@i = 10
+
+
+
+
